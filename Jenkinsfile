@@ -22,7 +22,7 @@ pipeline {
         }
 
         stage("push docker images") {
-            echo "pushed"
+            echo "pushed again"
         }
 
         stage("bring cluster down") {
