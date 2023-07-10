@@ -1,27 +1,36 @@
+properties([pipelineTriggers([githubPush()])])
+
 pipeline {
     agent any
 
-    steps{
-        step "Trigger from github webhook" {
-
+    stages {
+        stage("pull latest changes") {
+              steps {
+                checkout([
+                 $class: 'GitSCM',
+                 branches: [[name: 'main']],
+                 userRemoteConfigs: [[
+                    url: 'git@github.com:Karthikb777/jenkinsCICDapp.git',
+                    credentialsId: '',
+                 ]]
+                ])
+            }
         }
 
-        step "build the docker image" {
-
+        stage("build docker images") {
+            echo "built"
         }
 
-        step "push the docker image to docker hub" {
-
+        stage("push docker images") {
+            echo "pushed"
         }
 
-        step "bring the cluster down if already up" {
-
+        stage("bring cluster down") {
+            echo "down"
         }
 
-        step "bring the cluster up" {
-            
+        stage("deploy latest images") {
+            echo "deployed"
         }
-
-
     }
 }
