@@ -19,7 +19,7 @@ pipeline {
 
         stage("push docker images") {
             steps {
-                echo "pushed again"
+                echo "ed again"
             }
         }
 
