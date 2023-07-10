@@ -18,7 +18,7 @@ pipeline {
         }
 
         stage("build docker images") {
-            echo "built"
+            echo "built changed"
         }
 
         stage("push docker images") {
