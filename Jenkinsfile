@@ -6,31 +6,33 @@ pipeline {
     stages {
         stage("pull latest changes") {
               steps {
-                checkout([
-                 $class: 'GitSCM',
-                 branches: [[name: 'main']],
-                 userRemoteConfigs: [[
-                    url: 'git@github.com:Karthikb777/jenkinsCICDapp.git',
-                    credentialsId: '',
-                 ]]
-                ])
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/Karthikb777/jenkinsCICDapp.git' 
             }
         }
 
         stage("build docker images") {
-            echo "built "
+            steps {
+                echo "built again"
+            }
         }
+        
 
         stage("push docker images") {
-            echo "pushed again"
+            steps {
+                echo "pushed again"
+            }
         }
 
         stage("bring cluster down") {
-            echo "down"
+            steps {
+                echo "down"
+            }
         }
 
         stage("deploy latest images") {
-            echo "deployed"
+            steps {
+                echo "deployed"
+            }
         }
     }
 }
